@@ -1,6 +1,6 @@
 <?php
 	
-	// Get an email address from the sample.php?email= parameter
+	// Get an email address from the sample.php?email= URL parameter
 	$email = $_GET['email'];
 	require('Gravatar.class.php');
 	$grav = new Gravatar($email);

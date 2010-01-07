@@ -3,7 +3,7 @@
 /**
 *	Class Gravatar
 *
-*	@author Lucas Araújo <araujo.lucas@gmail.com>
+*	@author Lucas Araujo <araujo.lucas@gmail.com>
 *	@version 1.1
 *	@package Gravatar
 */
@@ -29,7 +29,7 @@ class Gravatar {
         "size"			=> 80,        // The default value
         "rating"		=> NULL,
         "border"		=> NULL,
-        'd'				=> 404,
+        'd'			=> 404,
     );
 
     /**

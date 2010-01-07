@@ -1,0 +1,71 @@
+AUTHOR
+
+Original class by
+	Lucas Araújo <araujo.lucas@gmail.com>
+	(all credit goes to this guy)
+	
+GitHub fork and existence check by:
+	Tyler Christensen <tyler@codeprinciples.com>
+	www.codeprinciples.com
+
+README
+
+From Gravatar Help:
+	"A gravatar is a dynamic image resource that is requested from our server. The request
+	URL is presented here, broken into its segments."
+	
+Source:
+	http://site.gravatar.com/site/implement
+
+First of all, this class was not written by me. We owe it to Lucas Araújo
+<araujo.lucas@gmail.com> who wrote the original Gravatar class in PHP. All
+I did was copy it to GitHub and add/modify some functionality:
+
+	- now supports checking to see if a Gravatar image actually exists
+	- returns the Gravatar URL by default, instead of an image tag
+	- visibility of the $this->email property is now public
+	
+The class still supports the $default image thing if you'd like to use it,
+but it'd probably be better to check if a Gravatar exists beforehand and
+then act accordingly in your implementation.
+
+Lucas's original implementation may be found at:
+	http://www.phpclasses.org/browse/package/4227.html
+	
+USAGE
+
+The following code will check to see if a Gravatar exists, and if so, show
+it with no parameters.
+
+<code>
+
+	$email = "youremail@yourhost.com";
+	$gravatar = new Gravatar($email);	// create new Gravatar with email
+	$gravatar->size = 128;
+	$gravatar->rating = "G";
+	
+	if ($gravatar->gravatarExists()) {
+		echo '<img src="' . $gravatar . '" alt="" />';	
+	} else {
+		echo 'No Gravatar exists for this email address';
+	}
+	
+</code>
+
+A sample PHP program is included that shows a similar demonstration and can
+be run on your own server without modification.
+
+OTHER FUNCTIONS
+
+$Grav = new Gravatar( [$email, [$default]] );	// make a Gravatar object
+bool $Grav->setEmail($email);
+bool $Grav->setDefault($default);
+bool $Grav->setRating($rating);					// maximum rating (G,PG,R,X)
+bool $Grav->setSize($size);						// size to get URL of
+bool $Grav->setExtra($extra);					// parameters to add to img tag
+
+bool $Grav->gravatarExists();					// check if Gravatar exists
+string $Grav->imageTag()						// get a complete <img> tag
+string $Grav->gravatarLink()					// get the Gravatar.com URL
+
+echo $Grav										// same as $Grav->gravatarLink()

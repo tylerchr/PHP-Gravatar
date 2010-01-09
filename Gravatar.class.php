@@ -49,12 +49,20 @@ class Gravatar {
     
     public function gravatarExists() {
     	$url = $this->gravatarLink();
-    	$headers = get_headers($url);
-		if (stripos($headers[0], '200 OK')) {
-			return true;
-		} else if (stripos($headers[0], '404 Not Found')) {
-			return false;
-		}
+    	
+    	if ($headers = @get_headers($url)) {
+			if (stripos($headers[0], '200 OK')) {
+				return true;
+			} else if (stripos($headers[0], '404 Not Found')) {
+				return false;
+			}
+    	} else {
+    		// Failed to access the Gravatar URL
+    		// echo "Could not determine, failed to access URL";
+    		
+    		// Safer to assume it does NOT exist
+    		return false;
+    	}
     }
 
     public function setEmail($email) {

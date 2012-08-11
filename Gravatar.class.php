@@ -12,7 +12,7 @@ class Gravatar {
     /**
      *    Gravatar's url
      */
-    const GRAVATAR_URL = "http://www.gravatar.com/avatar.php";
+    const GRAVATAR_URL = "http://www.gravatar.com/avatar/";
 
     /**
      *    Ratings available
@@ -23,12 +23,12 @@ class Gravatar {
      *    Query string. key/value
      */
     protected $properties = array(
-        "gravatar_id"    => NULL,
-        "default"        => NULL,
-        "size"            => 80,        // The default value
-        "rating"        => NULL,
-        "border"        => NULL,
-        'd'            => 404,
+        "gravatar_id"       => NULL,
+        "default"           => NULL,
+        "size"              => 80,        // The default value
+        "rating"            => NULL,
+        "border"            => NULL,
+        'd'                 => 404
     );
 
     /**
@@ -145,10 +145,10 @@ class Gravatar {
      *    Get source
      */
     public function gravatarLink() {
-        $url = self::GRAVATAR_URL ."?";
+        $url = self::GRAVATAR_URL . $this->properties['gravatar_id'] . '?';
         $first = true;
         foreach($this->properties as $key => $value) {
-            if (isset($value)) {
+            if ($key != 'gravatar_id' && isset($value)) {
                 if (!$first)
                     $url .= "&";
                 $url .= $key."=".urlencode($value);
